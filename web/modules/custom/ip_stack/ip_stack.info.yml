@@ -1,0 +1,9 @@
+name: 'Ip Stack'
+type: module
+core_version_requirement: ^8
+
+description: 'Custom module IP Stack. It allows the IPStack service consume, in order to get the any ip basic information'
+version: 1.0.0
+package: 'IP Stack'
+dependencies:
+  - drupal:node
