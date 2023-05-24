@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Module implementation file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ipstack_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.ipstack':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Ipstack module integrates <a href=":url">Ipstack API</a>.', [
+        ':url' => 'https://ipstack.com',
+      ]) . '</p>';
+      return $output;
+  }
+  return NULL;
+}

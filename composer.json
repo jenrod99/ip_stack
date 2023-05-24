@@ -18,7 +18,8 @@
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
-        "drupal/devel": "4.2"
+        "drupal/devel": "4.2",
+        "drupal/ipstack": "1.6"
     },
     "conflict": {
         "drupal/drupal": "*"

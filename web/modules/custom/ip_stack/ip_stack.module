@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+
+ function ip_stack_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match)
+ {
+     switch ($route_name) {
+ 
+             // Main module help for the block module.
+         case 'help.page.ip_stack':
+             return '<p> Este es el hook help de ip Stack </p>';
+     }
+ }
+
+ /**
+ * Implements hook_theme()
+ * 
+ */
+
+function ip_stack_theme($existing, $type, $theme, $path)
+{
+    return [
+        'ip_stack_template' => [
+            'variables' => [
+                'current_ip' => NULL,
+                'type' => NULL,
+                'continent_code' => NULL,
+                'continent_name' => NULL,
+                'country_code' => NULL,
+                'country_name' => NULL,
+                'region_code' => NULL,
+                'region_name' => NULL,
+                'city' => NULL,
+                'zip' => NULL,
+                'latitude' => NULL,
+                'longitude' => NULL,
+                'location' => NULL,
+            ]
+        ]
+    ];
+}

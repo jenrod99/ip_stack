@@ -7,3 +7,4 @@ version: 1.0.0
 package: 'IP Stack'
 dependencies:
   - drupal:node
+  - drupal:ipstack

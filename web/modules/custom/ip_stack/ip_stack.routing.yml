@@ -1,0 +1,6 @@
+ip_stack.home:
+  path: '/ip-stack/consultar-ip'
+  defaults:
+    _controller: '\Drupal\ip_stack\Controller\IpStackController::getInfo'
+  requirements: 
+    _permission: 'access content'

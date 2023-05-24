@@ -1,0 +1,4 @@
+services:
+  ipstack:
+    class: Drupal\ipstack\Ipstack
+    arguments: ['@http_client']

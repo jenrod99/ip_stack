@@ -1,0 +1,14 @@
+ipstack.settings:
+  route_name: ipstack.settings
+  title: 'Settings'
+  base_route: ipstack.settings
+
+ipstack.test:
+  route_name: ipstack.test
+  title: 'API Test'
+  base_route: ipstack.settings
+
+ipstack.testpage:
+  route_name: ipstack.testpage
+  title: 'Test page'
+  base_route: ipstack.settings

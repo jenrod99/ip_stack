@@ -1,0 +1,4 @@
+services:
+  ip_stack.getInfo:
+    class: 'Drupal\ip_stack\Services\GetIpStackInfo'
+    arguments: ['@ipstack']
