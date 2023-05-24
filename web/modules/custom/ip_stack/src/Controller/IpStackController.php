@@ -5,30 +5,33 @@ namespace Drupal\ip_stack\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\ip_stack\Services\GetIpStackInfo;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class IpStackController extends ControllerBase
 {
 
     private $ip_stack;
+    private $session;
 
-    public function __construct(GetIpStackInfo $ip_stack)
+    public function __construct(GetIpStackInfo $ip_stack, SessionInterface $session)
     {
         $this->ip_stack = $ip_stack;
+        $this->session = $session;
     }
 
     public static function create(ContainerInterface $container)
     {
         return new static(
-            $container->get('ip_stack.getInfo')
+            $container->get('ip_stack.getInfo'),
+            $container->get('session'),
         );
     }
 
 
-    public function getInfo()
+    public function getInfo($new_ip)
     {
 
-        $data = $this->ip_stack->getIpInfo();
+        $data = $this->ip_stack->getIpInfo($new_ip);
         $ip = $this->ip_stack->decode($data['data'])->ip;
         $type = $this->ip_stack->decode($data['data'])->type;
         $continent_code = $this->ip_stack->decode($data['data'])->continent_code;
@@ -43,7 +46,6 @@ class IpStackController extends ControllerBase
         $latitude = $this->ip_stack->decode($data['data'])->latitude;
         $longitude = $this->ip_stack->decode($data['data'])->longitude;
         $location = $this->ip_stack->decode($data['data'])->location->capital;
-        dpm($data);
 
         return [
             '#theme' => 'ip_stack_template',
@@ -59,7 +61,19 @@ class IpStackController extends ControllerBase
             '#zip' => $zip,
             '#latitude' => $latitude,
             '#longitude' => $longitude,
-            '#location' => $location,            
+            '#location' => $location,
         ];
+    }
+
+    public function mapPageContent()
+    {
+        $build = [];
+        $build[] = $this->formBuilder()->getForm('Drupal\ip_stack\Form\IpStackForm');
+        $new_ip = $this->session->get('ip_stack_new_ip');
+        if (!empty($new_ip) || $new_ip !== $this->session->get('ip_stack_new_ip')) {
+            // $this->getInfo($new_ip);
+            // $build[] = $this->getInfo($new_ip);
+        }
+        return $build;
     }
 }

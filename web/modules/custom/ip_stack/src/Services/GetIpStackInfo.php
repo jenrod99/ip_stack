@@ -14,30 +14,14 @@ class GetIpStackInfo
         $this->ip_stack = $ipstack;
     }
 
-    public function getIpInfo()
+    public function getIpInfo($ip)
     {
-        $ip = '201.221.172.69';
+        $this->ip_stack->setIp($ip);
+        $data = $this->ip_stack->getData();
 
-        // $this->ip_stack->setIp($ip);
-
-        // $data = $this->ip_stack->getData();
-        $data = null;
         return $data;
     }
 
-    /**
-     * Decode result.
-     *
-     * @param string $data
-     *   Ipstack data.
-     * @param bool $associative
-     *   Is result an array instead of object.
-     * @param array|null $options
-     *   Options array.
-     *
-     * @return array|object
-     *   Decoded result.
-     */
     public function decode($data, $associative = FALSE, $options = NULL)
     {
 
