@@ -36,13 +36,13 @@ class IpStackForm extends FormBase {
     public function buildForm(array $form, FormStateInterface $form_state)
     {
 
-        $form['ip'] =
+        $form['ip_input'] =
             [
                 '#type' => 'textfield',
-                '#title' => 'ip',
+                '#title' => 'Ingrese la IP que deseas consultar',
                 '#size' => 60,
                 '#maxlength' => 128,
-                '#minlength' => 128,
+                '#minlength' => 10,
                 '#required' => TRUE,
                 '#pattern' => '^\d+(\.\d+)*$',
                 '#attributes' =>  [
@@ -52,21 +52,24 @@ class IpStackForm extends FormBase {
 
         $form['actions']['submit'] = [
             '#type' => 'submit',
-            '#value' => 'Enviar',
+            '#value' => 'Consultar IP',
+            '#attributes' => [
+                'class' => ['btn btn-info mb-3']
+            ]
         ];
         return $form;
     }
 
     public function validateForm(array &$form, FormStateInterface $form_state)
     {
-        if (strlen($form_state->getValue('ip') < 4)) {
-            $form_state->setErrorByName('ip', 'El campo debe contener mínimo 4 caracteres');
+        if(strlen($form_state->getValue('ip_input')) < 10 ) {
+            $form_state->setErrorByName('ip_input', 'El campo de la ip debe contener mínimo 10 caracteres');
         }
     }
 
     public function submitForm(array &$form, FormStateInterface $form_state)
     {
-        $ip = $form_state->getValue('ip');
+        $ip = $form_state->getValue('ip_input');
         $this->session->set('ip_stack_new_ip', $ip);
     }
 }

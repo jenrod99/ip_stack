@@ -65,14 +65,22 @@ class IpStackController extends ControllerBase
         ];
     }
 
+    public function welcomeInfo() {
+        return [
+            '#theme' => 'ip_stack_welcome_template',
+            '#title' => 'Consulta de IP',
+            '#welcome_text'=> 'A través de este módulo podrá conocer la información básica de la IP ingresada'
+        ];
+    }
+
     public function mapPageContent()
     {
         $build = [];
+        $build[] = $this->welcomeInfo();
         $build[] = $this->formBuilder()->getForm('Drupal\ip_stack\Form\IpStackForm');
         $new_ip = $this->session->get('ip_stack_new_ip');
         if (!empty($new_ip) || $new_ip !== $this->session->get('ip_stack_new_ip')) {
-            // $this->getInfo($new_ip);
-            // $build[] = $this->getInfo($new_ip);
+            $build[] = $this->getInfo($new_ip);
         }
         return $build;
     }

@@ -1,15 +1,22 @@
-<h1>Buenas</h1>
+<h1> {{ title }} </h1>
 
-<p> {{ current_ip }} </p>
-<p> {{ type }} </p>
-<p> {{ continent_code }} </p>
-<p> {{ continent_name }} </p>
-<p> {{ region_code }} </p>
-<p> {{ region_name }} </p>
-<p> {{ city }} </p>
-<p> {{ zip }} </p>
-<p> {{ latitude }} </p>
-<p> {{ longitude }} </p>
-<p> {{ location }} </p>
-
-<!-- '#time_zone' => $time_zone, '#currency' => $currency, '#connection' => $connection, '#security' => $security, -->
+<div class="card shadow p-3 mb-5 rounded border-0">
+    <div class="card-body">
+        <h4 class="card-title py-2">Información encontrada</h4>
+        <div class="alert alert-info">
+            <p class="mb-1"> <strong>IP de consulta:</strong> {{ current_ip }} </p>
+            <p class="mb-0"> <strong>Protocolo:</strong> {{ type }} </p>
+        </div>
+        <h5 class="card-subtitle py-3 border-top">Ubicación</h5>
+        <ul class="list-group  list-group-flush">
+            <li class="list-group-item"><strong>Continente:</strong> {{ continent_name }}</li>
+            <li class="list-group-item"><strong>Código de continente:</strong> {{ continent_code }}</li>
+            <li class="list-group-item"><strong>Región:</strong> {{ region_name }}</li>
+            <li class="list-group-item"><strong>Código de región: </strong> {{ region_code }}</li>
+            <li class="list-group-item"><strong>Ciudad: </strong> {{ city }}</li>
+            <li class="list-group-item"><strong>Zip: </strong> {{ zip }}</li>
+            <li class="list-group-item"><strong>Latitud: </strong> {{ latitude }}</li>
+            <li class="list-group-item"><strong>Longitud: </strong> {{ longitude }}</li>
+        </ul>
+    </div>
+</div>
